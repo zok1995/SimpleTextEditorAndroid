@@ -64,6 +64,7 @@ public class MainActivity extends ActionBarActivity {
 
                 inputStream.close();
                 mEditTextMain.setText(stringBuilder.toString());
+                Toast.makeText(getApplicationContext(),"Opened successfully", Toast.LENGTH_LONG).show();
             }
         }catch (Throwable t){
             Toast.makeText(getApplicationContext(), "Eror:  " + toString(),Toast.LENGTH_LONG).show();
@@ -76,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
             OutputStreamWriter osw = new OutputStreamWriter(outputStream);
             osw.write(mEditTextMain.getText().toString());
             osw.close();
-            Toast.makeText(getApplicationContext(),"Saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Saved successfully", Toast.LENGTH_LONG).show();
         } catch (Throwable t) {
             Toast.makeText(getApplicationContext(),
                     "Mistic Exception: " + t.toString(), Toast.LENGTH_LONG).show();
