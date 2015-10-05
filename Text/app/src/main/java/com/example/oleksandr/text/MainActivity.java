@@ -15,7 +15,7 @@ import java.io.OutputStreamWriter;
 
 
 public class MainActivity extends ActionBarActivity {
-    private final static String FILENAME = "sample.txt";
+    private final static String FILENAME = "doit.txt";
     private EditText mEditTextMain;
 
     @Override
@@ -76,9 +76,10 @@ public class MainActivity extends ActionBarActivity {
             OutputStreamWriter osw = new OutputStreamWriter(outputStream);
             osw.write(mEditTextMain.getText().toString());
             osw.close();
+            Toast.makeText(getApplicationContext(),"Saved", Toast.LENGTH_LONG).show();
         } catch (Throwable t) {
             Toast.makeText(getApplicationContext(),
-                    "Exception: " + t.toString(), Toast.LENGTH_LONG).show();
+                    "Mistic Exception: " + t.toString(), Toast.LENGTH_LONG).show();
         }
     }
 }
