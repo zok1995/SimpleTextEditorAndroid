@@ -1,11 +1,13 @@
 package com.example.oleksandr.text;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
     private Button mButtonTextSize;
     private Spinner mSpinnerTypeText;
 
+    final int MENU_BOLD = 2;
+    final int MENU_ITALIC = 3;
     final int MENU_SIZE_22 = 4;
     final int MENU_SIZE_26 = 5;
     final int MENU_SIZE_30 = 6;
@@ -45,6 +49,24 @@ public class MainActivity extends ActionBarActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinnerTypeText, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinnerTypeText.setAdapter(adapter);
+        mSpinnerTypeText.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        mEditTextMain.setTypeface(null, Typeface.ITALIC);
+                        break;
+                    case 1:
+                        mEditTextMain.setTypeface(null, Typeface.BOLD);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         registerForContextMenu(mButtonTextSize);
     }
@@ -66,7 +88,6 @@ public class MainActivity extends ActionBarActivity {
                 menu.add(0,MENU_SIZE_34, 0, "34");
                 menu.add(0,MENU_SIZE_38, 0, "38");
                 break;
-
         }
     }
 
@@ -89,9 +110,11 @@ public class MainActivity extends ActionBarActivity {
                 mEditTextMain.setTextSize(38);
                 break;
         }
-
         return super.onContextItemSelected(item);
     }
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
